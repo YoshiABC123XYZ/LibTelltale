@@ -2,6 +2,7 @@
 
 #define _LIBTT_EXPORT __declspec(dllexport)
 #define ENDSWITH(str,ending) !(std::string(str).compare(strlen(str) - strlen(ending), strlen(ending), ending))
+#define VERSION "<current version>"
 
 #include <inttypes.h>
 #include <zconf.h>
@@ -45,6 +46,8 @@ constexpr uint32 HEADER_TTARCHIVE_C_E = 0x54544345; /*TTCE : Telltale Compressed
 constexpr uint32 HEADER_TTARCHIVE_C_Z = 0x5454435A; /*TTCZ : Telltale Compressed*/
 constexpr uint32 HEADER_TTARCHIVE_C_e = 0x54544365; /*TTCe : Telltale Compressed & Encrypted : Specific algo (oodle)*/
 constexpr uint32 HEADER_TTARCHIVE_C_z = 0x5454437A; /*TTCz : Telltale Compressed : Specific algo (oodle)*/
+
+_LIBTT_EXPORT const char* LibTelltale_Version() { return VERSION; }
 
 bool valid_str(uint8* buf,int len);
 

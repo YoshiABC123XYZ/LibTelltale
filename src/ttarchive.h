@@ -9,6 +9,7 @@ extern "C" {
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_OK = 0x00;
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_NULL_STREAM = 0x01;
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_HEADER = 0x02;
+	//Redacted err 3
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_VERSION = 0x04;
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_DATA = 0x05;
 	_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_KEY = 0x06;

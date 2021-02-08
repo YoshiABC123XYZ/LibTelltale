@@ -19,7 +19,7 @@ constexpr auto OODLE_REF = "oodle";
 
 #define DLL_DEFAULTS
 
-constexpr auto OODLE_DEFAULT = "oodle 2.7.3.dll";
+constexpr auto OODLE_DEFAULT = "oo2core_8_win64.dll";
 
 #undef DLL_DEFAULTS
 

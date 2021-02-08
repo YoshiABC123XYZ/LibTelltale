@@ -20,8 +20,16 @@ The game names are found in telltale_keys.h!
 The archives are opened by TTArchive2_Open and TTArchive_Open (TTArchive2 for .ttarch2, TTArchive for .ttarch)
 
 ```
-// Include ttarchive.h and telltale_keys.h!!
+#include "ttarchive.h"
+#include "filestream"
+#include "telltale_keys.h"
+#include "libhandle.h"
 // Opening a .ttarch2
+
+//The first important thing to mention is that some archives require the oodle compression library (games such as Batman TEW),
+//and you need to make sure the DLL is correct. Use the libhandle.h's MapLibraryDll("oodle","oo2core_7_win64.dll or whatever the dll is called")
+//to map where LibTelltale should look for the oodle DLL. Defaults to oo2core_8_win64.dll. Most games dont use this, so you should be fine. It will
+//return TTARCH_OPEN_LIB_ERR on TTArchive2_Open if the library is required and it could not be found/loaded.
 using namespace ttarchive2;
 TTArchive2 archive;
 archive.stream = new filestream("c:\\my\\path\\to\\my\\ttarch.ttarch2"); // Note that this stream gets closed (hence in this using fclose for the file) on destruct!

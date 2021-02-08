@@ -1,5 +1,5 @@
 * text=auto
 * linguist-vendored
-*.h linguist-vendored=false
+*.h linguist-detectable=false
 
-*.cpp linguist-vendored=false
+*.cpp linguist-detectable=true

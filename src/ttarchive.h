@@ -2,8 +2,7 @@
 #define TTARCHIVE
 
 #include "LibTelltale.h"
-#include "filestream.h"
-#include "telltale_keys.h"
+#include "bytestream.h"
 
 extern "C" {
 

@@ -1,0 +1,12 @@
+v1.0.0 : Setup the header constants and created the streams.
+v1.1.0 : Support for .ttarch2 finished
+v1.1.1 : Added all encryption keys from ttarchext, setup the ids
+v1.1.2 : Library handlers setup
+v1.1.3 : Integrated the Oodle Compression
+v1.1.4 : Fixed a problem with the chunk sizes
+v1.1.5 : Started work on the .ttarch 
+v1.1.6 : Ttarch versions 0 and 1 support
+v1.1.7 : Ttarch version 2 support
+v1.1.8 : Ttarch versions 3,4,7 added
+v1.1.9 : Ttarch versions 8 and 9 support added, fixed a problem with the nametable compression.
+v1.2.0 : Support for .ttarch and .ttarch2 reading and opening finished. - Release

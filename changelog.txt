@@ -10,3 +10,4 @@ v1.1.7 : Ttarch version 2 support
 v1.1.8 : Ttarch versions 3,4,7 added
 v1.1.9 : Ttarch versions 8 and 9 support added, fixed a problem with the nametable compression.
 v1.2.0 : Support for .ttarch and .ttarch2 reading and opening finished. - Release
+v1.2.1 : Byte output streams support (byteoutstream), base for flushing ttarchives back to a .ttarch/.ttarch2

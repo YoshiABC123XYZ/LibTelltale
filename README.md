@@ -31,7 +31,7 @@ The archives are opened by TTArchive2_Open and TTArchive_Open (TTArchive2 for .t
 //to map where LibTelltale should look for the oodle DLL. Defaults to oo2core_8_win64.dll. Most games dont use this, so you should be fine. It will
 //return TTARCH_OPEN_LIB_ERR on TTArchive2_Open if the library is required and it could not be found/loaded.
 using namespace ttarchive2;
-TTArchive2 archive = {};
+TTArchive2 * archive = new TTArchive2();
 archive.stream = new filestream("c:\\my\\path\\to\\my\\ttarch.ttarch2"); // Note that this stream gets closed (hence in this using fclose for the file) on destruct!
 archive.game_key = get_key("mc2"); // Not required, but a lot of archives are encrypted and you should specify the key! (See telltale_keys.h for a list)
 if(TTArchive2_Open(&archive)) {/*ERR!*/} // Returns 0 (TTARCH_OPEN_OK) if it opened without error, else D:

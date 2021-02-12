@@ -54,7 +54,7 @@ for(int i = 0; i < archive.entry_count; i++){
   printf("The file has the header (little endian by default) %X\n", myfilestream->read_int(32));
   delete myfilestream;
 }
-TTArchive2_Free(&archive); // Frees all memory associated with the archive.
+TTArchive2_Free(&archive); // Frees all memory associated with the archive. This frees the stream too so be careful!
 
 //Opening a .ttarch is the exact same, just with TTArchive structs and TTArchiveEntry. Its in the ttarchive namespace. Basically the same without the 2.
 //The only major different is the names are in the entry structs, not in the nametable. So there is no TTArchive_GetName(...), its just entry->name (uchar*)!
@@ -80,7 +80,8 @@ flush.options |= TTARCH_FLUSH_COMPRESS_OODLE | TTARCH_FLUSH_ENCRYPT; //OR option
 //The options get automatically set when converting, and its suggested that you know which version of the archive to OR (TTARCH_FLUSH_V3 or TTARCH_FLUSH_V4) if 
 //you haven't converted. The version is the same for each archive in a  game, but to check just open an archive from the games archives folder. 
 //Check in a music and sounds archive (_ms.ttarch2) and see if the header is TTA3 or TTA4. Ignore the first 12 bytes.
-if(TTArchive2_Flush(flush)){/*ERR!*/}//Flush the archive, without touching the given parameter. 
+if(TTArchive2_Flush(flush)){/*ERR!*/}//Flushes the archive, without touching the given parameter. 
+TTArchive2_FreeFlushable(flush);//Works the same as TTArchive2_Free.
 delete flush;
 
 ```

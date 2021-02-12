@@ -71,7 +71,7 @@ using namespace ttarchive2;
 //making it slightly more efficient. DO NOT set it to true if you are going to keep the entries! Use only when you are deleting the old archive, if you want to create
 //one then just create a new instance of the TTArchive2Flushabl struct.
 TTArchive2Flushable * flush = TTArchive2_MakeFlushable(loadedArchive,false);
-flush.entries.add(TTArchive2_CreateFlushableEntry(new filestream("d:\\myfiles\\inclueme.lua"), "includeme.lua");//Add an entry from a file on disk
+flush.entries.add(TTArchive2_CreateFlushableEntry(new filestream("d:\\myfiles\\includeme.lua"), "includeme.lua");//Add an entry from a file on disk
 flush.entries.add(TTArchive2_ConvertToFlushable(old_entry_which_i_want_to_import_into_the_archive));//Convert a TTArchive2Entry to a flushable one, useful if you only 
 //want specific files from a previous archive.
 flush.game_key = get_key("wdc"); // The key is automatically set if converted from the old archive!

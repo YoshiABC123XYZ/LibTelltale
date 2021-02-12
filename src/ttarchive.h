@@ -126,9 +126,13 @@ extern "C" {
 		_LIBTT_EXPORT bytestream* TTArchive2_StreamOpen(TTArchive2* archive, TTArchive2Entry* entry);
 		_LIBTT_EXPORT int TTArchive2_Open(TTArchive2* archive);
 		_LIBTT_EXPORT void TTArchive2_Free(TTArchive2* archive);
+
+		_LIBTT_EXPORT void TTArchive2_FreeFlushable(TTArchive2Flushable* f);
 		_LIBTT_EXPORT int TTArchive2_Flush(TTArchive2Flushable* archive, TTArchive2_OnFlush filter);
 		_LIBTT_EXPORT TTArchive2Flushable* TTArchive2_MakeFlushable(TTArchive2* archive, bool del_old);
 		_LIBTT_EXPORT void TTArchive2_FreeFlushable(TTArchive2Flushable* archive);
+		_LIBTT_EXPORT TTArchive2EntryFlushable* TTArchive2_CreateFlushableEntry(bytestream* stream, char* name);
+		_LIBTT_EXPORT TTArchive2EntryFlushable* TTArchive2_ConvertToFlushable(TTArchive2* archive,TTArchive2Entry* oldentry);
 
 	}
 

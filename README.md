@@ -70,7 +70,7 @@ The code below shows how you would flush a loaded or created archive back to a .
 
 void myflush(TTArchive2Flushable* entry);//Come to this in a second
 
-myfunction() {
+void myfunction() {
 
   using namespace ttarchive2;
 

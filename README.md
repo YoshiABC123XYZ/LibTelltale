@@ -59,6 +59,29 @@ TTArchive2_Free(&archive); // Frees all memory associated with the archive.
 //Opening a .ttarch is the exact same, just with TTArchive structs and TTArchiveEntry. Its in the ttarchive namespace. Basically the same without the 2.
 //The only major different is the names are in the entry structs, not in the nametable. So there is no TTArchive_GetName(...), its just entry->name (uchar*)!
 ```
-The archive loading is close to done! Just finishing some old ttarch formats, then the inner file formats support!
+
+### Flushing to a .ttarch2 (ttarch2 support in next release!)
+
+The code below shows how you would flush a loaded or created archive back to a .ttarch2 file. 
+
+```
+using namespace ttarchive2;
+//The way of flushing an archive is to create a new instance of TTArchive2Flushable. This archive can be written and edited. To convert from a TTArchive2, use
+//TTArchive2_MakeFlushable(TTArchive2,bool). The second parameter specifies if the previous archive should be freed. The entries get deleted as they are converted,
+//making it slightly more efficient. DO NOT set it to true if you are going to keep the entries! Use only when you are deleting the old archive, if you want to create //one then just create a new instance of the TTArchive2Flushabl struct.
+TTArchive2Flushable * flush = TTArchive2_MakeFlushable(loadedArchive,false);
+flush.entries.add(TTArchive2_CreateFlushableEntry(new filestream("d:\\myfiles\\inclueme.lua"), "includeme.lua");//Add an entry from a file on disk
+flush.entries.add(TTArchive2_ConvertToFlushable(old_entry_which_i_want_to_import_into_the_archive));//Convert a TTArchive2Entry to a flushable one, useful if you only 
+//want specific files from a previous archive.
+flush.game_key = get_key("wdc"); // The key is automatically set if converted from the old archive!
+flush.stream = new fileoutstream("c:\\users\\me\\desktop\\MyTtarchive.ttarch2"); // An outstream must be set when flushing it!
+flush.options |= TTARCH_FLUSH_COMPRESS_OODLE | TTARCH_FLUSH_ENCRYPT; //OR options for how to flush it. Set to 0 for default with no compression/encryption.
+//The options get automatically set when converting, and its suggested that you know which version of the archive to OR (TTARCH_FLUSH_V3 or TTARCH_FLUSH_V4) if 
+//you haven't converted. The version is the same for each game, but to check just open an archive from the games archives folder. Check in a music and sounds
+//archive (_ms.ttarch2) and see if the header is TTA3 or TTA4. Ignore the first 12 bytes.
+if(TTArchive2_Flush(flush)){/*ERR!*/}//Flush the archive, without touching the given parameter. 
+delete flush;
+
+```
 
 #### All encryption keys are from Ttarchext by Aluigi which is under the GNU General Public License version 2.

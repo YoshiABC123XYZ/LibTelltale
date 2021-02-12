@@ -91,7 +91,7 @@ void myfunction() {
   //you haven't converted. The version is the same for each archive in a  game, but to check just open an archive from the games archives folder. 
   //Check in a music and sounds archive (_ms.ttarch2) and see if the header is TTA3 or TTA4. Ignore the first 12 bytes.
 
-  if(TTArchive2_Flush(flush)){/*ERR!*/}//Flushes the archive, without touching the given parameter. 
+  if(TTArchive2_Flush(flush)){/*ERR!*/}//Flushes the archive, without touching any part of the given archive apart from the options which will be changed if they are invalid.
 
   TTArchive2_FreeFlushable(flush,&myflush);//Works the same as TTArchive2_Free.
   //The second parameter is the (nullable) on flush function. Will get called after an entry has been written to the archive. Useful for debugging.

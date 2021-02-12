@@ -69,7 +69,7 @@ using namespace ttarchive2;
 //The way of flushing an archive is to create a new instance of TTArchive2Flushable. This archive can be written and edited. To convert from a TTArchive2, use
 //TTArchive2_MakeFlushable(TTArchive2,bool). The second parameter specifies if the previous archive should be freed. The entries get deleted as they are converted,
 //making it slightly more efficient. DO NOT set it to true if you are going to keep the entries! Use only when you are deleting the old archive, if you want to create
-//one then just create a new instance of the TTArchive2Flushabl struct.
+//one then just create a new instance of the TTArchive2Flushable struct.
 TTArchive2Flushable * flush = TTArchive2_MakeFlushable(loadedArchive,false);
 flush.entries.add(TTArchive2_CreateFlushableEntry(new filestream("d:\\myfiles\\includeme.lua"), "includeme.lua");//Add an entry from a file on disk
 flush.entries.add(TTArchive2_ConvertToFlushable(old_entry_which_i_want_to_import_into_the_archive));//Convert a TTArchive2Entry to a flushable one, useful if you only 

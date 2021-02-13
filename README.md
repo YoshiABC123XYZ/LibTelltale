@@ -8,7 +8,7 @@ This lib will be available as a dynamic link library and static library for wind
 
 This project is under the Creative Commons Attribution-NoDerivs 3.0 Unported license, in which allows you to copy and redistribute the material in any medium or format for any purpose, even commercially. If you remix, transform, or build upon the material, you may not distribute the modified material. If you use this library credit must be given visibly, and to Telltale Games\LCG Entertainments.
 
-NOTE: Please to contact me if you believe there is a memory leak somewhere! There are probably bugs and im happy to fix them.
+NOTE: Please do contact me if you believe there is a memory leak/bug somewhere! 
 
 #### Streams used in this library
 

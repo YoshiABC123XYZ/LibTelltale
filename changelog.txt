@@ -11,3 +11,11 @@ v1.1.8 : Ttarch versions 3,4,7 added
 v1.1.9 : Ttarch versions 8 and 9 support added, fixed a problem with the nametable compression.
 v1.2.0 : Support for .ttarch and .ttarch2 reading and opening finished. - Release
 v1.2.1 : Byte output streams support (byteoutstream), base for flushing ttarchives back to a .ttarch/.ttarch2
+v1.2.2 : File out streams
+v1.2.3 : Flushable entries and archives, and converting and creation methods. No archive flush yet.
+v1.2.4 : Ttarch2 flushing works
+v1.2.5 : Added the oodle compression (OodleLZ_Compress) option - Release
+v1.2.6 : Flushable ttarch (not ttarch2) entries, no TTArchive_Flush
+v1.2.7 : Fixed decompression problems when opening various .ttarch archives
+v1.2.8 : Support for flushing ttarch version 0 and fixed a small error with some ttarch opening in ttarch version 2s.
+

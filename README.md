@@ -4,7 +4,7 @@ A library which supports reading, editing and writing of Telltale Games' file fo
 The library will support nearly all games from Telltale (see the telltale_keys.h for supported games) [Currently in development!]
 
 As the library gets updated Ill update the following docs too. 
-This lib will be available as a dynamic link library and static library for windows only! I will include the header files required with the releases.
+This lib will be available as a dynamic link library and static library for windows only! Download the source with the latest version for the header files.
 
 This project is under the Creative Commons Attribution-NoDerivs 3.0 Unported license, in which allows you to copy and redistribute the material in any medium or format for any purpose, even commercially. If you remix, transform, or build upon the material, you may not distribute the modified material. If you use this library credit must be given visibly, and to Telltale Games\LCG Entertainments.
 

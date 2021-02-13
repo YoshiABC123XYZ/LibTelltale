@@ -62,7 +62,7 @@ TTArchive2_Free(&archive); // Frees all memory associated with the archive. This
 //The only major different is the names are in the entry structs, not in the nametable. So there is no TTArchive_GetName(...), its just entry->name (uchar*)!
 ```
 
-### Flushing an archive to a stream (.ttarch support in next release!)
+### Flushing (writing) an archive to a stream (.ttarch support in next release!)
 
 The code below shows how you would flush a loaded or created archive back to a .ttarch2 file. 
 

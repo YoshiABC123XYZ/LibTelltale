@@ -76,7 +76,7 @@ void myfunction() {
 
   //The way of flushing an archive is to create a new instance of TTArchive2Flushable. This archive can be written and edited. To convert from a TTArchive2, use
   //TTArchive2_MakeFlushable(TTArchive2,bool). The second parameter specifies if the previous archive should be freed. The entries get deleted as they are converted,
-  //making it slightly more efficient. DO NOT set it to true if you are going to keep the entries or use then to be flushed again as they need their streams!
+  //making it slightly more efficient. DO NOT set it to true if you are going to keep the entries or use thenm to be flushed again as they need their streams!
   //Use only when you are deleting the old archive (Shortcut to TTArchive2_Free(...))
 
   TTArchive2Flushable * flush = TTArchive2_MakeFlushable(loadedArchive,false);

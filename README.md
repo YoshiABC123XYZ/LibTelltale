@@ -50,7 +50,7 @@ for(int i = 0; i < archive.entry_count; i++){
   printf("File name: %s, at offset %llx, with size %d\n", TTArchive2_GetName(&archive, entry), entry->offset, entry->size);
   // Getting the file name is a bit different. The namestable is loaded into memory instead of keeping the names in the entry struct. Use
   // TTArchive2_GetName(<archive>,<entry>) to get its name as a char*. To get an entry by name you would need to implement a search algorithm (unordered!)
-  // The TTArchive2Entry also has the crc64 of the file from the archive : entry->crc64
+  // The TTArchive2Entry also has the crc64 of the file name from the archive : entry->crc64
   
   bytestream * myfilestream = TTArchive2_StreamOpen(&archive, entry);
   printf("The file has the header (little endian by default) %X\n", myfilestream->read_int(32));

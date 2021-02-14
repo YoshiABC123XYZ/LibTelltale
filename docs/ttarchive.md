@@ -83,7 +83,7 @@ void myfunction() {
   delete flush;
 }
 
-void onflush(ttarchive2::TTArchive2EntryFlushable* entry) {
+void myflush(ttarchive2::TTArchive2EntryFlushable* entry) {
 	if (!entry) {//If the entry is null, this means the function is compressing the archive! Added this so you know to wait as this can take time.
 		printf("Compressing archive! Please wait...\n");
 		return;

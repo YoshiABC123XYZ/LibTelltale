@@ -16,7 +16,7 @@ extern "C" {
 		endian get_endian();
 		uint64 get_mark();
 		void set_endian(endian e);
-		void keep_buffer(bool b);//version 1.2.5+
+		void keep_buffer(bool b);//version >= 1.3.0
 		void mark_pos(uint64 pos);
 		void seek_beg(uint64 pos);
 		void write_zeros(uint32 count);
@@ -34,7 +34,7 @@ extern "C" {
 		uint64 position;
 		endian order;
 		bool v;
-		bool b;//version 1.2.5+
+		bool b;//version >= 1.3.0
 		virtual void grow(uint64 dest_size);
 	};
 

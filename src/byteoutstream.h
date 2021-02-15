@@ -1,13 +1,13 @@
 #pragma once
 
 #include "LibTelltale.h"
-
-#define DEFAULT_BUF_INCREMENT 0x1000
+#include <iostream>
 
 extern "C" {
 
 	_LIBTT_EXPORT class byteoutstream {
 	public:
+		~byteoutstream();
 		byteoutstream(uint8* initial_buf, uint64 size);
 		byteoutstream(uint32 size);
 		byteoutstream();
@@ -16,13 +16,15 @@ extern "C" {
 		endian get_endian();
 		uint64 get_mark();
 		void set_endian(endian e);
+		void keep_buffer(bool b);//version 1.2.5+
 		void mark_pos(uint64 pos);
 		void seek_beg(uint64 pos);
+		void write_zeros(uint32 count);
 		void seek_cur(uint64 pos);
 		void seek_end(uint64 pos);
 		void rewind();
 		virtual void write(uint8* buf, uint32 size);
-		virtual void write_int(uint8 width,uint64 val);
+		void write_int(uint8 width,uint64 val);
 		bool valid();
 		uint64 get_position();
 	protected:
@@ -32,6 +34,7 @@ extern "C" {
 		uint64 position;
 		endian order;
 		bool v;
+		bool b;//version 1.2.5+
 		virtual void grow(uint64 dest_size);
 	};
 

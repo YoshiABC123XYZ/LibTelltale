@@ -1,8 +1,6 @@
-#ifndef BYTESTREAM
-#define BYTESTREAM
+#pragma once
 
 #include "LibTelltale.h"
-
 #include <iostream>
 
 extern "C" {
@@ -14,6 +12,7 @@ extern "C" {
 	protected:
 		endian order;
 		uint64 size;
+		bool b;//version >= 1.3.0
 		uint64 pos;
 		uint64 mark;
 		uint8* buf = nullptr;
@@ -36,11 +35,10 @@ extern "C" {
 		void rewind();
 		endian get_endian();
 		void set_endian(endian e);
+		void keep_buffer(bool b);//version >= 1.3.0
 		virtual bool seek_beg(uint64 pos);
 		bool seek_cur(uint64 pos);
 		bool seek_end(uint64 pos);
 		virtual bool valid();
 	};
 }
-
-#endif

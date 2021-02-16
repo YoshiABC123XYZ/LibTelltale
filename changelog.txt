@@ -18,4 +18,5 @@ v1.2.5 : Added the oodle compression (OodleLZ_Compress) option - Release
 v1.2.6 : Flushable ttarch (not ttarch2) entries, no TTArchive_Flush
 v1.2.7 : Fixed decompression problems when opening various .ttarch archives
 v1.2.8 : Support for flushing ttarch version 0 and fixed a small error with some ttarch opening in ttarch version 2s.
+v1.2.9 : Restructured how Ttarchive loading is managed. No more flushables, its all in a TTArchiveEntry and TTArchive. Made the API simpler.
 

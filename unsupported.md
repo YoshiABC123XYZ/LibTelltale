@@ -6,5 +6,7 @@
 
 - Similar to above, when you toggle and enable a .ttarch (not .ttarch2) archive's compression and it was not compressed on load then you will get a warning returned on flush. This is because the type of compression varies between game archives. So be careful! This option is better used for .ttarch2 archives.
 
+- Adding entries to a .ttarch (not .ttarch2) will also likely cause errors. Its suggested to just edit files, or view data in them. By edit, you can also replace etc...
+
 #### The 'errors' above are WARNINGS which can be ignored and may or may not work.
 

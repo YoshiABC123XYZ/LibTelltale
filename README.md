@@ -16,6 +16,6 @@ This library has the base class 'bytestream' which is an (almost) abstract class
 
 ##### For the documentation on how to use this library, in the docs directory just find the doc you are looking for. Suggested to start on the ttarchives! (ttarch/ttarch2)
 
-There are some archives and files which won't be supported in the library. See the unsupported.md for more info.
+##### IMPORTANT: There are some archives and files which won't be supported in the library. See the unsupported.md for more info.
 
 #### All encryption keys are from Ttarchext by Aluigi which is under the GNU General Public License version 2.

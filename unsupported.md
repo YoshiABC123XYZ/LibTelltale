@@ -4,5 +4,5 @@
 
 - When creating a .ttarch (not .ttarch2) archive if you choose to compress it and not encrypt it, it will automatically be encrypted too due to problems with unencrypted and compressed archives in some games such as Back To The Future - Episode 105 (OUTATIME). The archive options flags will be updated after you call flush.
 
-- Similar to above, when enable a .ttarch (not .ttarch2) archive's compression and it was not compressed on load then you will get a warning returned on flush. This is because the type of compression varies between game archives. So be careful! This option is better used for .ttarch2 archives.
+- Similar to above, when you toggle and enable a .ttarch (not .ttarch2) archive's compression and it was not compressed on load then you will get a warning returned on flush. This is because the type of compression varies between game archives. So be careful! This option is better used for .ttarch2 archives.
 

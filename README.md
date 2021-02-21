@@ -1,7 +1,7 @@
 ## LibTelltale
 A library which supports reading, editing and writing of Telltale Games' file formats.
 
-The library will support nearly all games from Telltale (see the telltale_keys.h for supported games) [Currently in development!]
+The library will support all games from Telltale (see the telltale_keys.h for supported games), however few games will have features which are not available. See the unsupported.md for these games and whats supported and not.
 
 As the library gets updated Ill update the following docs too. 
 This lib will be available as a dynamic link library and static library for windows only! Download the source with the latest version for the header files.

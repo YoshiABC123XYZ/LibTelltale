@@ -21,7 +21,7 @@ Then there is byteoutstream and fileoutstream. These are identical to byte and f
 
 The following are all the games which this library supports (which at the moment is all their released ones). The game ID is used to reference the game when getting the encryption key for the game (LibTelltale_GetKey("some game id")).
 
-FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes 
+FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes <br /> 
 The support notes are only given if there is a known problem with it.
 
 Sam and Max: Save The World Remastered | sammaxremaster | N/A<br /> 

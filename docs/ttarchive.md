@@ -21,7 +21,7 @@ TTArchive2_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry
 TTArchive2_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive2_OnFlush)(TTArchive2Entry* entry); WARNING: If the parameter the library passes is NULL then its compressing the archive, useful as this can take long.<br />
 TTArchive2_EntryCreate(const char name[], stream*). Creates and returns a TTArchive2Entry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.<br />
 TTArchive2_EntryFind(archive*, const char name[]). Factory method to linearly search the archive entries for an archive with the given name and returns it.<br />
-TTArchive2_EntrySetName(entry* const char name[]). Sets the name of the archive. Use this instead of directly addressing the name field.<br /><br />
+TTArchive2_EntrySetName(entry*, const char name[]). Sets the name of the archive. Use this instead of directly addressing the name field.<br /><br />
 
 ## TTArchive (.ttarch) handling
 

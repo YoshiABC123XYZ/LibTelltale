@@ -1,4 +1,4 @@
-## TTArchive2 (.ttarch2) handling<br \><br \><br \><br \>
+## TTArchive2 (.ttarch2) handling<br \><br \><br \><br />
 
 An archive is held in a TTArchive2 struct, which contains the following fields
 - game_key : This is the encryption key for the game returned by LibTelltale_GetKey. Must be set otherwise a lot of archives wont load.

@@ -1,4 +1,4 @@
-## TTArchive2 (.ttarch2) handling<br \><br \><br \><br />
+## TTArchive2 (.ttarch2) handling
 
 An archive is held in a TTArchive2 struct, which contains the following fields
 - game_key : This is the encryption key for the game returned by LibTelltale_GetKey. Must be set otherwise a lot of archives wont load.
@@ -14,14 +14,14 @@ Each entry in the entries vector is a pointer to a ttarchive2entry, which has th
 - name_crc : The CRC64 of the file name, used mostly internally by the library. Do not edit this, use entrysetname. 
 - flags : Internal use
 - override_stream : Set this to a bytestream* to override the original stream. There is no streamset like .ttarch archives.
-- 
-TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.
-TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!
-TTArchive2_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.
-TTArchive2_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive2_OnFlush)(TTArchive2Entry* entry);
-TTArchive2_EntryCreate(const char name[], stream*). Creates and returns a TTArchive2Entry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.
-TTArchive2_EntryFind(archive*, const char name[]). Factory method to linearly search the archive entries for an archive with the given name and returns it.
-TTArchive2_EntrySetName(entry* const char name[]). Sets the name of the archive. Use this instead of directly addressing the name field.
+<br />
+TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
+TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!<br />
+TTArchive2_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.<br />
+TTArchive2_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive2_OnFlush)(TTArchive2Entry* entry);<br />
+TTArchive2_EntryCreate(const char name[], stream*). Creates and returns a TTArchive2Entry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.<br />
+TTArchive2_EntryFind(archive*, const char name[]). Factory method to linearly search the archive entries for an archive with the given name and returns it.<br />
+TTArchive2_EntrySetName(entry* const char name[]). Sets the name of the archive. Use this instead of directly addressing the name field.<br /><br />
 
 ## TTArchive (.ttarch) handling
 
@@ -42,12 +42,12 @@ Each entry in the entries vector is a pointer to a ttarchiveentry, which has the
 - reserved : Reserved for lua scripts, do not tamper with this either!
 - override_stream : The stream of the entry, but this is only used when editing the entry or creating a new one. Using streamopen opens the stream from the archive that was used in open and hence wont return the stream from the archive. This field should not be directly set, use streamset. 
 
-The fields in the structures above are not meant to be edited by you. Let the library take care of that to save errors.
+The fields in the structures above are not meant to be edited by you. Let the library take care of that to save errors.<br />
 
-TTArchive_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.
-TTArchive_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!
-TTArchive_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.
-TTArchive_StreamSet(entry*, stream*). Use this method to set the stream of the given entry. Don't set override_stream, this is what you need to call for that!
-TTArchive_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive_OnFlush)(TTArchiveEntry* entry);
-TTArchive_EntryCreate(const char name[], stream*). Creates and returns a TTArchiveEntry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.
-TTArchive_EntryFind(archive*, const char name[]). Factory method to linearly search the archive entries for an archive with the given name and returns it.
+TTArchive_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
+TTArchive_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!<br />
+TTArchive_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.<br />
+TTArchive_StreamSet(entry*, stream*). Use this method to set the stream of the given entry. Don't set override_stream, this is what you need to call for that!<br />
+TTArchive_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive_OnFlush)(TTArchiveEntry* entry);<br />
+TTArchive_EntryCreate(const char name[], stream*). Creates and returns a TTArchiveEntry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.<br />
+TTArchive_EntryFind(archive*, const char name[]). Factory method to linearly search the archive entries for an archive with the given name and returns it.<br />

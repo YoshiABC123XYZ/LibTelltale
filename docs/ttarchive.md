@@ -5,7 +5,7 @@ An archive is held in a TTArchive2 struct, which contains the following fields
 - entries : All entries are found in this vector
 - stream : The stream to read the archive from when using open.
 - flushstream : The stream to write the archive to when using flush.
-- options : ORed options which can be tested using the TTARCH_FLUSH_x options, and changed. You can specify to encrypt/compress/raw/uncompress/oodle etc..
+- options : ORed options which can be tested using the TTARCH_FLUSH_x options, and changed. You can specify encrypt/compressed/raw/uncompressed/oodle etc..
 
 Each entry in the entries vector is a pointer to a ttarchive2entry, which has the following fields 
 - offset : The file offset in the archive

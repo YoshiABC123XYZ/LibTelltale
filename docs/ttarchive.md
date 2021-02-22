@@ -16,7 +16,7 @@ Each entry in the entries vector is a pointer to a ttarchive2entry, which has th
 - override_stream : Set this to a bytestream* to override the original stream. There is no streamset like .ttarch archives.
 <br />
 TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
-TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!<br />
+TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this! WARNING: This frees the streams too! It does NOT delete the archive pointer, thats up to you to do after.<br />
 TTArchive2_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.<br />
 TTArchive2_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive2_OnFlush)(TTArchive2Entry* entry);<br />
 TTArchive2_EntryCreate(const char name[], stream*). Creates and returns a TTArchive2Entry, instead of using new. This sets the fields and you can add this to the vector in the archive. If you want to add entries to an archive, you MUST use this otherwise you will get undefined behaviour when writing the archive.<br />
@@ -45,7 +45,7 @@ Each entry in the entries vector is a pointer to a ttarchiveentry, which has the
 The fields in the structures above are not meant to be edited by you. Let the library take care of that to save errors.<br />
 
 TTArchive_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
-TTArchive_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this!<br />
+TTArchive_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this! WARNING: This frees the streams too! It does NOT delete the archive pointer, thats up to you to do after.<br />
 TTArchive_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.<br />
 TTArchive_StreamSet(entry*, stream*). Use this method to set the stream of the given entry. Don't set override_stream, this is what you need to call for that!<br />
 TTArchive_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive_OnFlush)(TTArchiveEntry* entry);<br />

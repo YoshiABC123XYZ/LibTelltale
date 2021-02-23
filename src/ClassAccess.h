@@ -2,6 +2,7 @@
 
 /*
 	Helper functions for programs in languages such as C#, Java and Python to access the classes and their functions.
+	Looks like a C source lol
 */
 
 #include "LibTelltale.h"

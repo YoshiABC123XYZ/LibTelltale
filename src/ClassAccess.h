@@ -17,6 +17,10 @@
 
 // TTARCHIVES
 
+E void hTTArchive_EntryAdd(ttarchive::TTArchive* arc, ttarchive::TTArchiveEntry* entry);
+
+E void hTTArchive2_EntryAdd(ttarchive2::TTArchive2* arc, ttarchive2::TTArchive2Entry* entry);
+
 E uint32 hTTArchive_GetEntryCount(ttarchive::TTArchive* archive);
 
 E ttarchive::TTArchiveEntry* hTTArchive_GetEntryAt(ttarchive::TTArchive* archive, uint32 index);

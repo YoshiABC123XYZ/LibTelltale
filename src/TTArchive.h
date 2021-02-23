@@ -115,6 +115,7 @@ namespace ttarchive2 {
 	_LIBTT_EXPORT int TTArchive2_Flush(TTArchive2* archive, TTArchive2_OnFlush filter);
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryCreate(const char name[], bytestream* stream);
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryFind(TTArchive2* archive, const char name[]);
+	_LIBTT_EXPORT void TTArchive2_StreamSet(TTArchive2Entry* entry, bytestream* stream);
 
 }
 

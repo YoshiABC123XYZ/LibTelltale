@@ -7,7 +7,7 @@ Please do contact me if you believe there is a memory leak/bug somewhere!
 
 This project is under the Creative Commons Attribution-NoDerivs 3.0 Unported license, in which allows you to copy and redistribute the material in any medium or format for any purpose, even commercially. If you remix, transform, or build upon the material, you may not distribute the modified material. If you use this library credit must be given visibly, and to Telltale Games\LCG Entertainments.
 
-##### If you want to use C#/Java/Python with this library (more languages supported in the future if needed), the sources will be in src/<lang> 
+##### If you want to use C#/Java/Python with this library (more languages supported in the future if needed), the sources will be in src/[lang]
 
 #### Streams used in this library (All default to LITTLE endian!)
 

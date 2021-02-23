@@ -13,7 +13,7 @@ Each entry in the entries vector is a pointer to a ttarchive2entry, which has th
 - name : The name of the entry
 - name_crc : The CRC64 of the file name, used mostly internally by the library. Do not edit this, use entrysetname. 
 - flags : Internal use
-- override_stream : Set this to a bytestream* to override the original stream. There is no streamset like .ttarch archives.
+- override_stream : The stream of the entry, but this is only used when editing the entry or creating a new one. Using streamopen opens the stream from the archive that was used in open and hence wont return the stream from the archive. This field should not be directly set, use streamset. 
 <br />
 TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
 TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this! WARNING: This frees the streams too! It does NOT delete the archive pointer, thats up to you to do after.<br />

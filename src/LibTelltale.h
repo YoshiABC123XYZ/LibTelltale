@@ -16,7 +16,7 @@
 #define UNSET_BIT_INDEX(num,bit) num = num & ~(1<<bit)
 #define UNSET_BIT(num,bit) num &= ~(bit)
 
-#define VERSION "2.0.0"
+#define VERSION "2.0.5"
 
 #define DLL_REFERENCE_IDS
 

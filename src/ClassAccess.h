@@ -67,7 +67,7 @@ E uint64 hByteStream_GetSize(bytestream* stream);
 
 E unsigned char* hByteStream_ReadString(bytestream* stream, uint32 len);
 
-E unsigned char* hByteStream_ReadString0(bytestream* stream);
+E unsigned char* hByteStream_ReadString0(bytestream* stream);//Reads a null terminated string
 
 E uint8* hByteStream_ReadBytes(bytestream* stream, uint32 size);
 

@@ -58,12 +58,12 @@ namespace ttarchive {
 
 	typedef struct TTArchive {
 		unsigned char* game_key;
-		std::vector<ttarch_entry*> entries;
+		std::vector<ttarch_entry*>* entries;
 		bytestream* stream;
 		byteoutstream* flushstream;
 		void* reserved;
 		int options;
-		TTArchive() : options(0), game_key(NULL), reserved(NULL) {};
+		TTArchive() : options(0), game_key(NULL), reserved(NULL), entries(new std::vector<ttarch_entry*>) {};
 	} ttarch;
 
 	typedef void (*TTArchive_OnFlush)(TTArchiveEntry* entry);
@@ -97,11 +97,11 @@ namespace ttarchive2 {
 		bytestream* name_table;
 		unsigned char* game_key;
 		uint64 files_start;
-		std::vector<ttarch2_entry*> entries;
+		std::vector<ttarch2_entry*>* entries;
 		bytestream* stream;
 		byteoutstream* flushstream;
 		uint8 flags;
-		TTArchive2() : game_key(NULL), options(0), name_table(NULL), entries(NULL) {}
+		TTArchive2() : game_key(NULL), options(0), name_table(NULL),  entries(new std::vector<ttarch2_entry*>) {}
 	} ttarch2;
 
 	typedef struct TTArchive2C {

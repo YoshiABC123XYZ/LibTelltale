@@ -2,6 +2,7 @@
 
 /*
 	Helper functions for programs in languages such as C#, Java and Python to access the classes and their functions.
+	The prefix 'h' stands for helper function :D
 	Looks like a C source lol
 */
 

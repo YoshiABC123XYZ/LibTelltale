@@ -71,10 +71,10 @@ namespace ttarchive {
 	_LIBTT_EXPORT bytestream* TTArchive_StreamOpen(TTArchive* archive, TTArchiveEntry* entry);
 	_LIBTT_EXPORT int TTArchive_Open(TTArchive* archive);
 	_LIBTT_EXPORT void TTArchive_Free(TTArchive* archive);
-	_LIBTT_EXPORT TTArchiveEntry* TTArchive_EntryCreate(const char* name, bytestream* stream);
+	_LIBTT_EXPORT TTArchiveEntry* TTArchive_EntryCreate(const char name[], bytestream* stream);
 	_LIBTT_EXPORT int TTArchive_Flush(TTArchive* archive,TTArchive_OnFlush onflush);
 	_LIBTT_EXPORT void TTArchive_StreamSet(TTArchiveEntry* entry, bytestream * stream);
-	_LIBTT_EXPORT TTArchiveEntry* TTArchive_EntryFind(TTArchive* archive,const char* name);
+	_LIBTT_EXPORT TTArchiveEntry* TTArchive_EntryFind(TTArchive* archive,const char name[]);
 
 }
 
@@ -93,15 +93,12 @@ namespace ttarchive2 {
 
 	typedef struct TTArchive2 {
 		int options;
-		uint32 nametable_size;
-		bytestream* name_table;
 		unsigned char* game_key;
-		uint64 files_start;
 		std::vector<ttarch2_entry*>* entries;
 		bytestream* stream;
 		byteoutstream* flushstream;
 		uint8 flags;
-		TTArchive2() : game_key(NULL), options(0), name_table(NULL),  entries(new std::vector<ttarch2_entry*>) {}
+		TTArchive2() : game_key(NULL), options(0),  entries(new std::vector<ttarch2_entry*>) {}
 	} ttarch2;
 
 	typedef struct TTArchive2C {
@@ -116,8 +113,8 @@ namespace ttarchive2 {
 	_LIBTT_EXPORT int TTArchive2_Open(TTArchive2* archive);
 	_LIBTT_EXPORT void TTArchive2_Free(TTArchive2* archive);
 	_LIBTT_EXPORT int TTArchive2_Flush(TTArchive2* archive, TTArchive2_OnFlush filter);
-	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryCreate(const char* name, bytestream* stream);
-	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryFind(TTArchive2* archive, const char* name);
+	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryCreate(const char name[], bytestream* stream);
+	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryFind(TTArchive2* archive, const char name[]);
 
 }
 

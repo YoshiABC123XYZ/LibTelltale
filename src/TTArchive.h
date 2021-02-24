@@ -75,6 +75,7 @@ namespace ttarchive {
 	_LIBTT_EXPORT int TTArchive_Flush(TTArchive* archive,TTArchive_OnFlush onflush);
 	_LIBTT_EXPORT void TTArchive_StreamSet(TTArchiveEntry* entry, bytestream * stream);
 	_LIBTT_EXPORT TTArchiveEntry* TTArchive_EntryFind(TTArchive* archive,const char name[]);
+	_LIBTT_EXPORT void TTArchive_FreeEntry(TTArchiveEntry* entry);
 
 }
 
@@ -116,6 +117,7 @@ namespace ttarchive2 {
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryCreate(const char name[], bytestream* stream);
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryFind(TTArchive2* archive, const char name[]);
 	_LIBTT_EXPORT void TTArchive2_StreamSet(TTArchive2Entry* entry, bytestream* stream);
+	_LIBTT_EXPORT void TTArchive2_FreeEntry(TTArchive2Entry* entry);
 
 }
 

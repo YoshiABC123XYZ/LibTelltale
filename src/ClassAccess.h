@@ -17,6 +17,8 @@
 
 // TTARCHIVES
 
+E void hTTArchive_EntrySetName(ttarchive::TTArchiveEntry* entry, const char name[]);
+
 E void hTTArchive_EntryAdd(ttarchive::TTArchive* arc, ttarchive::TTArchiveEntry* entry);
 
 E void hTTArchive2_EntryAdd(ttarchive2::TTArchive2* arc, ttarchive2::TTArchive2Entry* entry);

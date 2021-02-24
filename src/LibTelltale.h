@@ -40,7 +40,8 @@ typedef uint32_t uint32;
 typedef uint64_t uint64;
 typedef uint8 endian;
 
-//taken the encryption keys from ttarchext :D - must have been a pain trying to find them. however i did find them in the .exe below some tt data structs
+//encryption keys can be found under the ORIG_S array in the exe, with the last element being 985887462, just copied the bytes below that since theyre 
+//encryption keys. Always 55 bytes long.
 
 //Helps me keep track of how many there are. In total this is the amount of games supported (all of telltale's games :D)
 #define KEY_COUNT 65

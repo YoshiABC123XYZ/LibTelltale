@@ -17,6 +17,10 @@
 
 // TTARCHIVES
 
+E void hTTArchive_EntryRemove(ttarchive::TTArchive* archive, ttarchive::TTArchiveEntry* entry, bool free_entry);
+
+E void hTTArchive2_EntryRemove(ttarchive2::TTArchive2* archive, ttarchive2::TTArchive2Entry* entry, bool free_entry);
+
 E void hTTArchive_EntrySetName(ttarchive::TTArchiveEntry* entry, const char name[]);
 
 E void hTTArchive_EntryAdd(ttarchive::TTArchive* arc, ttarchive::TTArchiveEntry* entry);

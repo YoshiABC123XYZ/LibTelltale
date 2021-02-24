@@ -19,7 +19,7 @@ Then there is byteoutstream and fileoutstream. These are identical to byte and f
 
 ##### IMPORTANT: There are some archives and files which won't be supported in the library. See the unsupported.md for more info.
 
-#### All encryption keys are from Ttarchext by Aluigi which is under the GNU General Public License version 2.
+The encryption keys can all be also found in the executables, by searching '985887462' with a hex editor below it you should see a 55 byte long encryption key :D. The value 985887462 is a blowfish encryption constant in the ORIG_S.
 
 The following are all the games which this library supports (which at the moment is all their released ones). The game ID is used to reference the game when getting the encryption key for the game (LibTelltale_GetKey("some game id")).
 

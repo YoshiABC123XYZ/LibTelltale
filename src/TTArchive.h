@@ -88,7 +88,6 @@ namespace ttarchive2 {
 		uint64 offset;
 		uint32 size;
 		uint64 name_crc;
-		uint32 names_offset;
 		char* name;
 		bytestream* override_stream;
 		uint8 flags;

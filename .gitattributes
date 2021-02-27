@@ -1,4 +1,4 @@
 * text=auto
 *.h linguist-detectable=false
 *.cpp linguist-detectable=true
-*.cs
+*.cs linguist-detectable=false

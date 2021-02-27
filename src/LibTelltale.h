@@ -143,14 +143,17 @@ INTDEF HEADER_FORMATTED_B = 0xEB794091;
 INTDEF HEADER_FORMATTED_C = 0x64AFDEFB;
 INTDEF HEADER_FORMATTED_D = 0x64AFDEAA;
 
-INTDEF HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2*/
-INTDEF HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2*/
-INTDEF HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9*/
-INTDEF HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 */
-INTDEF HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted*/
 
-INTDEF HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B; /*\x1BLEn ~ \x1BLua = Lua Encrypted*/
-INTDEF HEADER_LUA_ENCRYPTED_OUT = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
+INTDEF HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted (0x80 meta encrypt/bit flip blocks), aka V0*/
+INTDEF HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 , aka V1 */
+INTDEF HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9, aka V2*/
+//INTDEF HEADER_MCOM = 0x4D434F4D; /*MCOM : Meta Computed (?), V3 - Not used, not supported*/
+//INTDEF HEADER_MSV5 = 0x4D535634; /*MSV4 : Meta Stream Version 4, V4 - Not used, not supported*/
+INTDEF HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2, V5*/
+INTDEF HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2, V6*/
+
+INTDEF HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B;/*\x1BLEn ~ \x1BLua = Lua Encrypted*/
+INTDEF HEADER_LUA_ENCRYPTED_OUT   = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
 INTDEF HEADER_LUA_COMPILED	  = 0x61754C1B;/*\x1BLua*/
 
 INTDEF HEADER_TTARCHIVE_V2 = 0x54544132; /*TTA2 : Telltale Archive v2 - unreleased*/

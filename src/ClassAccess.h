@@ -18,6 +18,8 @@
 
 #define E _LIBTT_EXPORT
 
+#define CLASS_DEL(_C,_N) E void h##_N## _Delete(_C v) { delete v; };
+
 #define DCARRAY_DECL_EDIT(_T, _PREF) \
 	DCARRAY_DECL(_T,_PREF) \
 	E void _PREF ## _DCArray_Add(DCArray<_T>* arr, _T value) { arr->Add(value); };\
@@ -36,6 +38,8 @@ DCARRAY_DECL_NOCLEAR(Vers*, VersBlocks)
 //META
 
 DCARRAY_DECL_EDIT(MetaClassDescription*, MetaStreamClasses)
+
+CLASS_DEL(MetaStream*, MetaStream)
 
 E void hMetaStream_SetVersion(MetaStream* stream, int version);
 
@@ -62,6 +66,8 @@ E uint32 hMetaStream_GetClassVersion(MetaStream* stream, const char typeName[], 
 E DCArray<MetaClassDescription*>* hMetaStream_GetClasses(MetaStream* stream);
 
 //TTCTX
+
+CLASS_DEL(TTContext*, TTContext)
 
 E char* hTTContext_FindArchiveEntry(TTContext* ctx, uint64 crc);
 
@@ -141,6 +147,8 @@ E fileoutstream* hFileOutStream_Create(const char filepath[]);
 
 E bool hByteOutStream_Valid(byteoutstream* stream);
 
+CLASS_DEL(byteoutstream*, ByteOutStream)
+
 //BYTE STREAMS
 
 uint8* hByteStream_GetBuffer(bytestream* stream);
@@ -172,3 +180,5 @@ E bytestream* hByteStream_CreateFromBuffer(uint8* buf, uint32 size);
 E filestream* hFileStream_Create(const char filepath[]);
 
 E bool hByteStream_Valid(bytestream* stream);
+
+CLASS_DEL(bytestream*, ByteStream)

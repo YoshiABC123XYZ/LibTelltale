@@ -134,6 +134,7 @@ namespace ttarchive2 {
 					if (i1)exit(1);\
 					fwrite(buf, 0x10000, 1, tm);\
 					cpos += src;\
+					free(buf);\
 				}
 
 #endif

@@ -30,10 +30,10 @@ protected:
 	DCArray<MetaClassDescription*>* classes;
 public:
 	void Flush(byteoutstream* stream);
-	uint32  mMetaVersion;
+	uint32 mMetaVersion;
 	uint32 mFlags;
 	uint32 mSize;
-	uint32 mTextureSize;
+	uint32 mTextureSize; /*.bundle ?? Have to have a look at this one*/
 	MetaStream();
 	~MetaStream();
 	void Close();

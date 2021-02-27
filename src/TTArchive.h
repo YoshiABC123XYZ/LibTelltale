@@ -45,6 +45,7 @@ _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_V9 =				 0b10010000000;
 
 namespace ttarchive {
 
+	//AKA ResourceEntry
 	typedef struct TTArchiveEntry {
 		bytestream* override_stream;
 		uint64 offset;
@@ -81,6 +82,7 @@ namespace ttarchive {
 
 namespace ttarchive2 {
 
+	//AKA ResourceEntry
 	typedef struct TTArchive2Entry {
 		uint64 offset;
 		uint32 size;

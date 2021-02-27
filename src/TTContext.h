@@ -8,12 +8,10 @@
 #include "DCArray.h"
 #include "TTArchive.h"
 
-//TTContexts are what you use to read and write and edit formats using. It is a state based class, in which you update to the next using next 
-
 typedef struct Block {
 	uint32 size;
 	bytestream* blockstream;
-} Block;//internally for reading blocks nicely
+} Block;
 
 struct Vers;
 

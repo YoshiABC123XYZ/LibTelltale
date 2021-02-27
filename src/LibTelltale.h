@@ -7,6 +7,8 @@
 #include "zlib.h"
 #include <Windows.h>
 
+#define VERSION "2.2.0"
+
 #define TTARCH_BUFZ 0x10000
 #define _LIBTT_EXPORT extern "C" __declspec(dllexport)
 #define ENDSWITH(str,ending) !(std::string(str).compare(strlen(str) - strlen(ending), strlen(ending), ending))
@@ -15,8 +17,18 @@
 #define PAD_REM(num,padn) pad(num,padn) - num
 #define UNSET_BIT_INDEX(num,bit) num = num & ~(1<<bit)
 #define UNSET_BIT(num,bit) num &= ~(bit)
-
-#define VERSION "2.0.5"
+#define LOOPQ(i,count) for(int i = 0; i < count; i++)
+#define DEL_VECTOR(e) LOOPQ(idx, e->size()) { delete (*e)[idx]; } e->clear();
+#define DEL_VECTOR2(e,_T, _freefunc) for(_T v : *(e)){ _freefunc(v); delete v;} e->clear();
+#define VECTOR_REMOVE(v, entry) v.erase(std::remove(v.begin(), v.end(), entry), v.end());
+#define INTDEF constexpr uint32
+//Definitions to quickly code the read from telltales files
+#define GETS(var) var->ctx->GetCurrentStream()
+#define SETV(k,v) out->k = v
+#define NEXTI stream->read_int(32)
+#define NEXTB stream->read_int(8) - 0x30
+#define SSTR out->ctx->SkipString()
+#define NEXTS out->ctx->ReadString()
 
 #define DLL_REFERENCE_IDS
 
@@ -40,10 +52,6 @@ typedef uint32_t uint32;
 typedef uint64_t uint64;
 typedef uint8 endian;
 
-//encryption keys can be found under the ORIG_S array in the exe, with the last element being 985887462, just copied the bytes below that since theyre 
-//encryption keys. Always 55 bytes long.
-
-//Helps me keep track of how many there are. In total this is the amount of games supported (all of telltale's games :D)
 #define KEY_COUNT 65
 
 typedef struct {
@@ -123,33 +131,39 @@ const key KEYS[KEY_COUNT] = {
 constexpr endian LITTLE_ENDIAN = 0x01;
 constexpr endian BIG_ENDIAN =  0x02;
 
+INTDEF METASTREAMEDFILE_OPEN_OK = 0x00;//Returned when a meta streamed file (file with a meta stream header MSV5/etc) opens successfully
+INTDEF METASTREAMEDFILE_BAD_FORMAT = 0x01;//There is a format error with the file. You should report this on the github page.
+INTDEF METASTREAMEDFILE_CRC_UNIMPL = 0x02;//Telltale use CRCs in newer games, and if the CRC is not found in the library CRC database then report this to me too!
+INTDEF METASTREAMEDFILE_BAD_ARGS = 0x03;//Arguments passed to the open function are NULL or not valid
+INTDEF METASTREAMEDFILE_VERS_LOADED = 0x04;//Returned when a .vers is already loaded
+
 /*Instead of encryption for some old games, telltale bit flipped the data in some wierd chunk sizes and encrypted the meta header bytes. These are its headers*/
-constexpr uint32 HEADER_FORMATTED_A = 0xFB4A1764;
-constexpr uint32 HEADER_FORMATTED_B = 0xEB794091;
-constexpr uint32 HEADER_FORMATTED_C = 0x64AFDEFB;
-constexpr uint32 HEADER_FORMATTED_D = 0x64AFDEAA;
+INTDEF HEADER_FORMATTED_A = 0xFB4A1764;
+INTDEF HEADER_FORMATTED_B = 0xEB794091;
+INTDEF HEADER_FORMATTED_C = 0x64AFDEFB;
+INTDEF HEADER_FORMATTED_D = 0x64AFDEAA;
 
-constexpr uint32 HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2*/
-constexpr uint32 HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2*/
-constexpr uint32 HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9*/
-constexpr uint32 HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 */
-constexpr uint32 HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted*/
+INTDEF HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2*/
+INTDEF HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2*/
+INTDEF HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9*/
+INTDEF HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 */
+INTDEF HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted*/
 
-constexpr uint32 HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B; /*\x1BLEn ~ \x1BLua = Lua Encrypted*/
-constexpr uint32 HEADER_LUA_ENCRYPTED_OUT = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
-constexpr uint32 HEADER_LUA_COMPILED	  = 0x61754C1B;/*\x1BLua*/
+INTDEF HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B; /*\x1BLEn ~ \x1BLua = Lua Encrypted*/
+INTDEF HEADER_LUA_ENCRYPTED_OUT = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
+INTDEF HEADER_LUA_COMPILED	  = 0x61754C1B;/*\x1BLua*/
 
-constexpr uint32 HEADER_TTARCHIVE_V2 = 0x54544132; /*TTA2 : Telltale Archive v2 - unreleased*/
-constexpr uint32 HEADER_TTARCHIVE_V3 = 0x54544133; /*TTA3 : Telltale Archive v3*/
-constexpr uint32 HEADER_TTARCHIVE_V4 = 0x54544134; /*TTA4 : Telltale Archive v4*/
+INTDEF HEADER_TTARCHIVE_V2 = 0x54544132; /*TTA2 : Telltale Archive v2 - unreleased*/
+INTDEF HEADER_TTARCHIVE_V3 = 0x54544133; /*TTA3 : Telltale Archive v3*/
+INTDEF HEADER_TTARCHIVE_V4 = 0x54544134; /*TTA4 : Telltale Archive v4*/
 
-constexpr uint32 HEADER_TTARCHIVE_DEF = 0x5454434E; /*TTNC : Telltale Not Compressed*/
-constexpr uint32 HEADER_TTARCHIVE_C_E = 0x54544345; /*TTCE : Telltale Compressed & Encrypted*/
-constexpr uint32 HEADER_TTARCHIVE_C_Z = 0x5454435A; /*TTCZ : Telltale Compressed*/
-constexpr uint32 HEADER_TTARCHIVE_C_e = 0x54544365; /*TTCe : Telltale Compressed & Encrypted : Specific algo (oodle)*/
-constexpr uint32 HEADER_TTARCHIVE_C_z = 0x5454437A; /*TTCz : Telltale Compressed : Specific algo (oodle)*/
+INTDEF HEADER_TTARCHIVE_DEF = 0x5454434E; /*TTNC : Telltale Not Compressed*/
+INTDEF HEADER_TTARCHIVE_C_E = 0x54544345; /*TTCE : Telltale Compressed & Encrypted*/
+INTDEF HEADER_TTARCHIVE_C_Z = 0x5454435A; /*TTCZ : Telltale Compressed*/
+INTDEF HEADER_TTARCHIVE_C_e = 0x54544365; /*TTCe : Telltale Compressed & Encrypted : Specific algo (oodle)*/
+INTDEF HEADER_TTARCHIVE_C_z = 0x5454437A; /*TTCz : Telltale Compressed : Specific algo (oodle)*/
 
-const uint64 crc_tab[] = {//ECMA CRC-64 
+const uint64 crc_tab[] = {
 		0x0000000000000000L,
 		0x42F0E1EBA9EA3693L, 0x85E1C3D753D46D26L, 0xC711223CFA3E5BB5L,
 		0x493366450E42ECDFL, 0x0BC387AEA7A8DA4CL, 0xCCD2A5925D9681F9L,
@@ -260,18 +274,3 @@ uint64 crcbuf(uint8* buf, uint32 size, uint64 curr_crc);
 uint64 crctt(char* str);
 
 uint64 pad(uint64 number, uint64 pad);
-
-//Functions for myself to debug 
-
-#define DUMPDEBUGAT(buf, size,fname) \
-	char file[250];\
-	strcpy(file,"c:\\users\\lucas\\desktop\\debug\\");\
-	strcat(file,fname);\
-	FILE * tmpfile = fopen(file,"wb");\
-	fwrite(buf,size, 1, tmpfile);\
-	fclose(tmpfile);
-
-#define DUMPDEBUG(buf, size) \
-	FILE * tmpfile1 = fopen("c:\\users\\lucas\\desktop\\debug.ttarch2","wb");\
-	fwrite(buf,size, 1, tmpfile1);\
-	fclose(tmpfile1);

@@ -51,6 +51,7 @@ namespace ttarchive {
 		uint64 offset;
 		uint32 size;
 		char* name;
+		uint64 name_crc;
 		uint8 flags   : 6;
 		bool accessed : 1;
 		bool reserved : 1;

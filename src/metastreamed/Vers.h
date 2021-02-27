@@ -7,7 +7,7 @@
 
 //.vers files are in old games and specify the variables and they're types to read meta streamed files as
 
-/*SerializedVersionInfo = .vers */
+/*SerializedVersionInfo/MetaVersionInfo = .vers */
 
 class TTContext;
 

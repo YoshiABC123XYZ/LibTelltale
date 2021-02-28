@@ -32,4 +32,6 @@ v2.1.0 : .vers (Vers) file format support, including base classes for CRC to str
 v2.1.5 : More string mappings to CRC lookups
 v2.1.9 : Updated and fixed bugs for c# implementation
 v2.2.0 : Tested .vers and meta stream flushing : Release
+v2.2.1 : Fixed c# Dispose helper functions
+v2.2.2 : Fixed bugs for reading version 3 .ttarch2 archives (wolf among us)
 

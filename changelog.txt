@@ -19,4 +19,17 @@ v1.2.6 : Flushable ttarch (not ttarch2) entries, no TTArchive_Flush
 v1.2.7 : Fixed decompression problems when opening various .ttarch archives
 v1.2.8 : Support for flushing ttarch version 0 and fixed a small error with some ttarch opening in ttarch version 2s.
 v1.2.9 : Restructured how Ttarchive loading is managed. No more flushables, its all in a TTArchiveEntry and TTArchive. Made the API simpler.
+v1.5.0 : Bug fixes
+v1.6.0 : Restructured and renamed functions for libtelltale.h
+v1.6.5 : Created ClassAccess for wrapper functions to access from external languages 
+v1.8.0 : DCArray & SArray
+v1.9.0 : Finished TTContexts implementation
+v1.9.5 : Added write functions to ttcontext
+v1.9.8 : Fixed memory leaks 
+v2.0.0 : Fixed remaining bugs and tested successfully
+v2.0.5 : C# Implementation of the library, support for ttarchives/meta streams.
+v2.1.0 : .vers (Vers) file format support, including base classes for CRC to strings mappings
+v2.1.5 : More string mappings to CRC lookups
+v2.1.9 : Updated and fixed bugs for c# implementation
+v2.2.0 : Tested .vers and meta stream flushing : Release
 

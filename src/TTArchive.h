@@ -12,28 +12,28 @@
 #define OPSET(op) BIT_ORED(archive->options, op)
 #define COMPRESSED(options) (OPSET(TTARCH_FLUSH_ENCRYPT) || OPSET(TTARCH_FLUSH_COMPRESS_OODLE) || OPSET(TTARCH_FLUSH_COMPRESS_DEFAULT))
 
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_OK =				0x00;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_NULL_STREAM =			0x01;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_HEADER = 			0x02;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_VERSION =			0x04;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_DATA =		        0x05;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_KEY = 			0x06;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_LIB_ERR = 			0x07;
-_LIBTT_EXPORT constexpr auto TTARCH_OPEN_NULL_ARCHIVE = 		0x08;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_OK = 0x00;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_NULL_STREAM = 0x01;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_HEADER = 0x02;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_VERSION = 0x04;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_DATA = 0x05;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_BAD_KEY = 0x06;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_LIB_ERR = 0x07;
+_LIBTT_EXPORT constexpr auto TTARCH_OPEN_NULL_ARCHIVE = 0x08;
 
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_OK = 				0x00;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NULL_STREAM =			0x01;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NULL_ARCHIVE = 		0x02;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_DATA_ERR =			0x03;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_LIB_ERR = 			0x04;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_BAD_OPTIONS = 		0x05;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_OK = 0x00;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NULL_STREAM = 0x01;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NULL_ARCHIVE = 0x02;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_DATA_ERR = 0x03;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_LIB_ERR = 0x04;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_BAD_OPTIONS = 0x05;
 
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_COMPRESS_DEFAULT =		 0b1;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_COMPRESS_OODLE =		 0b10;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_COMPRESS_DEFAULT = 0b1;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_COMPRESS_OODLE =	 0b10;
 _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_ENCRYPT =			 0b100;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_SKIP_CRCS =			 0b1000;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_SKIP_CRCS =		 0b1000;
 _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_RAW =				 0b10000;
-_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NO_TMPFILE =			 0b100000;
+_LIBTT_EXPORT constexpr auto TTARCH_FLUSH_NO_TMPFILE =		 0b100000;
 _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_V0 =				 0b00000000000; /*.ttarch LEGACY*/
 _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_V1 =				 0b00010000000;
 _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_V2=				 0b00100000000;
@@ -45,7 +45,6 @@ _LIBTT_EXPORT constexpr auto TTARCH_FLUSH_V9 =				 0b10010000000;
 
 namespace ttarchive {
 
-	//AKA ResourceEntry
 	typedef struct TTArchiveEntry {
 		bytestream* override_stream;
 		uint64 offset;
@@ -64,8 +63,8 @@ namespace ttarchive {
 		bytestream* stream;
 		byteoutstream* flushstream;
 		void* reserved;
-		int options;
-		TTArchive() : options(0), game_key(NULL), reserved(NULL), entries(new std::vector<ttarch_entry*>) {};
+		uint32 options;
+		TTArchive() : options(0), game_key(NULL), reserved(NULL), entries(new std::vector<ttarch_entry*>), flushstream(0) {};
 	} ttarch;
 
 	typedef void (*TTArchive_OnFlush)(TTArchiveEntry* entry);
@@ -83,7 +82,6 @@ namespace ttarchive {
 
 namespace ttarchive2 {
 
-	//AKA ResourceEntry
 	typedef struct TTArchive2Entry {
 		uint64 offset;
 		uint32 size;
@@ -95,13 +93,13 @@ namespace ttarchive2 {
 	} ttarch2_entry;
 
 	typedef struct TTArchive2 {
-		int options;
+		uint32 options;
 		unsigned char* game_key;
 		std::vector<ttarch2_entry*>* entries;
 		bytestream* stream;
 		byteoutstream* flushstream;
 		uint8 flags;
-		TTArchive2() : game_key(NULL), options(0),  entries(new std::vector<ttarch2_entry*>) {}
+		TTArchive2() : game_key(NULL), options(0), flags(0), entries(new std::vector<ttarch2_entry*>), flushstream(0) {}
 	} ttarch2;
 
 	typedef struct TTArchive2C {
@@ -118,23 +116,8 @@ namespace ttarchive2 {
 	_LIBTT_EXPORT int TTArchive2_Flush(TTArchive2* archive, TTArchive2_OnFlush filter);
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryCreate(const char name[], bytestream* stream);
 	_LIBTT_EXPORT TTArchive2Entry* TTArchive2_EntryFind(TTArchive2* archive, const char name[]);
+	_LIBTT_EXPORT void TTArchive2_EntrySetName(TTArchive2Entry* e, const char name[]);
 	_LIBTT_EXPORT void TTArchive2_StreamSet(TTArchive2Entry* entry, bytestream* stream);
 	_LIBTT_EXPORT void TTArchive2_FreeEntry(TTArchive2Entry* entry);
 
 }
-
-#define DUMPTTARCH				FILE* tm = fopen("c:\\users\\lucas\\desktop\\debug.ttarch2", "wb");\
-				int cpos = stream->get_position();\
-				for (int i = 0; i < chunks; i++) {\
-					uint32 z = 0x10000;\
-					uint8* buf = (uint8*)calloc(1, 0x10000);\
-					uint32 src = handle->value.chunk_sizes[i];\
-					stream->seek_beg(cpos);\
-					int i1 = z_decompress(buf,&z,stream->read(src),&src,-15);\
-					if (i1)exit(1);\
-					fwrite(buf, 0x10000, 1, tm);\
-					cpos += src;\
-					free(buf);\
-				}
-
-#endif

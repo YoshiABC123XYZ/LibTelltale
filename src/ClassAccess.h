@@ -141,7 +141,7 @@ E uint64 hByteOutStream_GetSize(byteoutstream* stream);
 
 E void hByteOutStream_WriteBytes(byteoutstream* stream, uint8* buf, uint32 size);
 
-E bytestream* hByteOutStream_Create(uint32 size);
+E byteoutstream* hByteOutStream_Create(uint32 size);
 
 E fileoutstream* hFileOutStream_Create(const char filepath[]);
 

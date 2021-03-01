@@ -5,7 +5,7 @@
 - Actor Agent Mappers (.aam)
 - Telltale Meshes (.d3dmesh)
 - Telltale Textures (.d3dtx)
-- Telltale Archive (.ttarch, .ttarch2)
+- Telltale Archives (.ttarch, .ttarch2)
 - Serialized Version Information (Meta) (.vers)
 - Dialogs (.dlog, .dlg)
 - Language Databases (.landb, .langdb)

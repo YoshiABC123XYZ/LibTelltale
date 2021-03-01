@@ -15,7 +15,8 @@ Each entry in the entries vector is a pointer to a ttarchive2entry, which has th
 - flags : Internal use
 - override_stream : The stream of the entry, but this is only used when editing the entry or creating a new one. Using streamopen opens the stream from the archive that was used in open and hence wont return the stream from the archive. This field should not be directly set, use streamset. 
 <br />
-TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants.<br />
+TTArchive2_Open(archive*). This opens the archive from the stream field in the archive. Returns an int which is any of the the TTARCH_OPEN_x constants. Note that if there
+is a LIB error (ie oodle couldn't be found) the input stream is deleted! Use ttarchive2free to delete everything else.<br />
 TTArchive2_Free(archive*). Call this to free the archive and remove all entries etc.. Don't do this manually, use this! WARNING: This frees the streams too! It does NOT delete the archive pointer, thats up to you to do after.<br />
 TTArchive2_StreamOpen(archive*,entry*). Returns a bytestream* of the given entry, reading from the file as you request data.<br />
 TTArchive2_Flush(archive*, flushfunc*). Writes the archive and all its entries to the flushstream stream in the archive. This can take a while depending on bigger archives, so the flushfunc is a (nullable) function which gets called when a file is written to the archive. It should be void and take an entry* as a parameter. The function definition is void (*TTArchive2_OnFlush)(TTArchive2Entry* entry); WARNING: If the parameter the library passes is NULL then its compressing the archive, useful as this can take long.<br />

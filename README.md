@@ -27,7 +27,7 @@ FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Sup
 The support notes are only given if there is a known problem with it or a note.
 
 Sam and Max: Save The World Remastered | sammaxremaster | N/A<br /> 
-The Walking Dead: A New Day | twd1 | This is NOT the game key to use for TWD the definitive series! <br /> 
+The Walking Dead: A New Day | twd1 | This is NOT the game key to use for TWD the definitive series! Writing archives for this game is not supported; however you can still open them, edit the files and save the files for conversion etc<br /> 
 The Walking Dead: Michonne | michonne | N/A<br /> 
 The Walking Dead: Season Two | wd2 | This is NOT the game key to use for TWD the definitive series! <br /> 
 Game Of Thrones | thrones | N/A<br /> 

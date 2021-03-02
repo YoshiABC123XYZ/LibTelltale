@@ -10,4 +10,4 @@
 
 #### The 'errors' above are WARNINGS which can be ignored and may or may not work.
 
-- You cannot write version 9 archives (games such as jurassic park, law and order, puzzle agent 2, poker night 2, walking dead: a new day OG) due to a problem with a new unknown value which I cant figure out. Hopefully in the future ill add support for these versions. However, you can open a version 9 archive and edit it and save files from the archive (eg extracting or just converting the files using the library etc..).
+- You cannot write or open version 9 archives (games such as jurassic park, law and order, puzzle agent 2, poker night 2, walking dead: a new day OG) due to a problem with a new unknown value which I cant figure out. Hopefully in the future ill add support for these versions. If you extract with ttarchext for example, then you can directly load the files from it in the library. The archives aren't supported, the files are.

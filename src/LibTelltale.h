@@ -7,7 +7,9 @@
 #include "zlib.h"
 #include <Windows.h>
 
-#define VERSION "2.2.0"
+//TODO for me: when a new game is added make sure to update get game flags !!
+
+#define VERSION "2.5.4"
 
 #define TTARCH_BUFZ 0x10000
 #define _LIBTT_EXPORT extern "C" __declspec(dllexport)
@@ -16,19 +18,26 @@
 #define BIT_ORED(num,bitcheck) ((num & bitcheck) >> (int)log2(bitcheck)) & 1
 #define PAD_REM(num,padn) pad(num,padn) - num
 #define UNSET_BIT_INDEX(num,bit) num = num & ~(1<<bit)
+#define DEL(v) delete v; v = NULL;
 #define UNSET_BIT(num,bit) num &= ~(bit)
 #define LOOPQ(i,count) for(int i = 0; i < count; i++)
 #define DEL_VECTOR(e) LOOPQ(idx, e->size()) { delete (*e)[idx]; } e->clear();
 #define DEL_VECTOR2(e,_T, _freefunc) for(_T v : *(e)){ _freefunc(v); delete v;} e->clear();
 #define VECTOR_REMOVE(v, entry) v.erase(std::remove(v.begin(), v.end(), entry), v.end());
 #define INTDEF constexpr uint32
+#define WRITESB(strm, i) strm->write_int(32,strlen(i) + 8); strm->write_int(32,strlen(i)); strm->write((uint8*)i, strlen(i));
+#define WRITES(strm, i) strm->write_int(32,strlen(i)); strm->write((uint8*)i, strlen(i));
 //Definitions to quickly code the read from telltales files
-#define GETS(var) var->ctx->GetCurrentStream()
+#define GETS ctx->GetCurrentStream()
 #define SETV(k,v) out->k = v
 #define NEXTI stream->read_int(32)
+#define NEXTL stream->read_int(64)
+#define NEXTS stream->read_int(18)
+#define NEXTC stream->read_int(8)
 #define NEXTB stream->read_int(8) - 0x30
-#define SSTR out->ctx->SkipString()
-#define NEXTS out->ctx->ReadString()
+#define SSTR ctx->SkipString()
+#define BADCRC(type) !_stricmp(type, "unknown_t")
+#define NEXTS ctx->ReadString()
 
 #define DLL_REFERENCE_IDS
 
@@ -64,7 +73,6 @@ const key KEYS[KEY_COUNT] = {
 	{ "sammaxremaster", "\x92\xCA\x9A\x81\x85\xE4\x64\x73\xA2\xBF\xD6\xD1\x7F\xC6\xCB\x88\x99\x5A\x80\xD8\xAA\xC2\x97\xE7\x96\x51\x9F\xA8\x9A\xD9\xAE\x95\xD7\x76\x62\x7F\xB4\xC4\xA6\xB9\xD6\xEC\xA9\x9C\x67\x85\xB3\xDC\x92\xC4\x9E\x64\xA0\xA2\x92"},
 	{ "twd1","\x96\xca\x99\x9f\x8d\xda\x9a\x87\xd7\xcd\xd9\x95\x62\x95\xaa\xb8\xd5\x95\x96\xe5\xa4\xb9\x9b\xd0\xc9\x52\x9f\x85\x90\xcd\xcd\x9f\xc8\xb3\x99\x93\xc6\xc4\x9d\x9d\xa5\xa4\xcf\xcd\xa3\x9d\xbb\xdd\xac\xa7\x8b\x94\xd4\xa3\x6f" },//Walking Dead new day, not for the series! this is an old one
 	{ "michonne","\x96\xca\x99\x9f\x8d\xda\x9a\x87\xd7\xcd\xd9\xb1\x63\x95\x83\xae\xca\x96\x98\xe0\xab\xdc\x7a\xd4\xc6\x85\xbc\x86\x69\x9c\xb8\x95\xcb\xb0\x9b\xbd\xc8\xa7\x9e\xcd\xd9\xc1\xa9\x9c\x67\x89\xb3\xdb\xb0\xcc\x94\x9a\xb4\xd7\xa0" },
-	{ "wd2","\x96\xCA\x99\x9F\x8D\xDA\x9A\x87\xD7\xCD\xD9\x96\x62\x95\xAA\xB8\xD5\x95\x96\xE5\xA4\xB9\x9B\xD0\xC9\x53\x9F\x85\x90\xCD\xCD\x9F\xC8\xB3\x99\x93\xC6\xC4\x9D\x9E\xA5\xA4\xCF\xCD\xA3\x9D\xBB\xDD\xAC\xA7\x8B\x94\xD4\xA4\x6F" },//walking dead season 2
 	{ "thrones","\x86\xCA\x9A\x99\x73\xD2\x87\xAB\xE4\xDB\xE3\xC9\xA5\x96\x83\x87\xB0\x8B\x9A\xDC\x8C\xDB\x8A\xD7\xD7\x90\xDD\xBA\xAC\x9D\x91\x64\xA6\xA6\x9F\xB4\xB0\xC9\x8D\xD4\xE7\xE3\xE6\xD1\xAA\x63\x82\x9F\x8C\xC4\x93\x98\xBF\xD8\x93" },
 	{ "hector101","\x87\xCE\x90\xA8\x93\xDE\x64\x73\xA3\xB4\xDA\xC7\xA6\xD4\xC5\x88\x99\x5B\x75\xDC\xA0\xE9\xA5\xE1\x96\x51\xA0\x9D\x9E\xCF\xD5\xA3\xD1\x76\x62\x80\xA9\xC8\x9C\xE0\xE4\xE6\xA9\x9C\x68\x7A\xB7\xD2\xB9\xD2\x98\x64\xA0\xA3\x87" },
 	{ "hector102","\x87\xCE\x90\xA8\x93\xDE\x64\x73\xA4\xB4\xDA\xC7\xA6\xD4\xC5\x88\x99\x01\x75\xDC\xA0\xE9\xA5\xE1\x96\x51\xA1\x9D\x9E\xCF\xD5\xA3\xD1\x76\x62\x81\xA9\xC8\x9C\xE0\xE4\xE6\xA9\x9C\x69\x7A\xB7\xD2\xB9\xD2\x98\x64\xA0\xA4\x87" },
@@ -126,6 +134,7 @@ const key KEYS[KEY_COUNT] = {
 	{ "monkeyisland105","\x8c\xd8\x9b\x9f\x89\xe5\x7c\xb6\xde\xcd\xe3\xc8\x63\x95\x88\xa4\xd8\x98\x98\xdc\xb6\xbe\xa9\xdb\xc6\x8f\xd3\x86\x69\xa1\xae\xa3\xcd\xb0\x97\xc8\xaa\xd6\xa5\xcd\xe3\xd8\xa9\x9c\x6c\x7f\xc1\xdd\xb0\xc8\x9f\x7c\xe3\xde\xa0" },
 	{ "wdc","\x96\xCA\x99\x9F\x8D\xDA\x9A\x87\xD7\xCD\xD9\xBB\x93\xD1\xBE\xC0\xD7\x91\x71\xDC\x9E\xD9\x8D\xD0\xD1\x8C\xD8\xC3\xA0\xB0\xC6\x95\xC3\x9C\x93\xBB\xCC\xCC\xA7\xD3\xB9\xD9\xD9\xD0\x8E\x93\xBE\xDA\xAE\xD1\x8D\x77\xD5\xD3\xA3" },//Walking Dead Collection / Definitive
 	{ "wd3","\x96\xca\x99\x9f\x8d\xda\x9a\x87\xd7\xcd\xd9\x97\x62\x95\xaa\xb8\xd5\x95\x96\xe5\xa4\xb9\x9b\xd0\xc9\x54\x9f\x85\x90\xcd\xcd\x9f\xc8\xb3\x99\x93\xc6\xc4\x9d\x9f\xa5\xa4\xcf\xcd\xa3\x9d\xbb\xdd\xac\xa7\x8b\x94\xd4\xa5\x6f" },//Walking Dead - A New Frontier
+	{ "wd2","\x96\xCA\x99\x9F\x8D\xDA\x9A\x87\xD7\xCD\xD9\x96\x62\x95\xAA\xB8\xD5\x95\x96\xE5\xA4\xB9\x9B\xD0\xC9\x53\x9F\x85\x90\xCD\xCD\x9F\xC8\xB3\x99\x93\xC6\xC4\x9D\x9E\xA5\xA4\xCF\xCD\xA3\x9D\xBB\xDD\xAC\xA7\x8B\x94\xD4\xA4\x6F" },//walking dead season 2
 };
 
 constexpr endian LITTLE_ENDIAN = 0x01;
@@ -143,17 +152,14 @@ INTDEF HEADER_FORMATTED_B = 0xEB794091;
 INTDEF HEADER_FORMATTED_C = 0x64AFDEFB;
 INTDEF HEADER_FORMATTED_D = 0x64AFDEAA;
 
+INTDEF HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2*/
+INTDEF HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2*/
+INTDEF HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9*/
+INTDEF HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 */
+INTDEF HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted*/
 
-INTDEF HEADER_MBES = 0x4D424553; /*MBES : Meta Binary Encrypted Stream - similar to header formatted (0x80 meta encrypt/bit flip blocks), aka V0*/
-INTDEF HEADER_MBIN = 0x4D42494E; /*MBIN : Meta Binary - .ttarch v0, v1, v2 , aka V1 */
-INTDEF HEADER_MTRE = 0x4D545245; /*MTRE : Meta ? Reference Encrypted? - .ttarch v3 - v9, aka V2*/
-//INTDEF HEADER_MCOM = 0x4D434F4D; /*MCOM : Meta Computed (?), V3 - Not used, not supported*/
-//INTDEF HEADER_MSV5 = 0x4D535634; /*MSV4 : Meta Stream Version 4, V4 - Not used, not supported*/
-INTDEF HEADER_MSV5 = 0x4D535635; /*MSV5 : Meta Stream Version 5 - .ttarch2, V5*/
-INTDEF HEADER_MSV6 = 0x4D535636; /*MSV6 : Meta Stream Version 6 - .ttarch2, V6*/
-
-INTDEF HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B;/*\x1BLEn ~ \x1BLua = Lua Encrypted*/
-INTDEF HEADER_LUA_ENCRYPTED_OUT   = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
+INTDEF HEADER_LUA_ENCRYPTED 	  = 0x6E454C1B; /*\x1BLEn ~ \x1BLua = Lua Encrypted*/
+INTDEF HEADER_LUA_ENCRYPTED_OUT = 0x6F454C1B;/*\x1BLEo ~ \x1BLua = Lua Out (Resource Desc)*/
 INTDEF HEADER_LUA_COMPILED	  = 0x61754C1B;/*\x1BLua*/
 
 INTDEF HEADER_TTARCHIVE_V2 = 0x54544132; /*TTA2 : Telltale Archive v2 - unreleased*/
@@ -165,6 +171,13 @@ INTDEF HEADER_TTARCHIVE_C_E = 0x54544345; /*TTCE : Telltale Compressed & Encrypt
 INTDEF HEADER_TTARCHIVE_C_Z = 0x5454435A; /*TTCZ : Telltale Compressed*/
 INTDEF HEADER_TTARCHIVE_C_e = 0x54544365; /*TTCe : Telltale Compressed & Encrypted : Specific algo (oodle)*/
 INTDEF HEADER_TTARCHIVE_C_z = 0x5454437A; /*TTCz : Telltale Compressed : Specific algo (oodle)*/
+
+//The following flags ORable flags which get returned by get game flags. Old TT tool is for games before MC:SM where they remade the engine and a lot of the files need format changes internally
+//The rest of the flags are the TTARCH_FLUSH_Vx flags, which are the best supported version of the archive if you are creating an archive for it and you need to know the version for the game
+INTDEF GAMEFLAG_OLD_TT_TOOL = 0b1;
+INTDEF GAMEFLAG_IS_TTARCH2 = 0b10;
+INTDEF GAMEFLAG_IS_TTARCH = 0b100;
+
 
 const uint64 crc_tab[] = {
 		0x0000000000000000L,
@@ -259,6 +272,7 @@ _LIBTT_EXPORT const char* LibTelltale_Version();
 _LIBTT_EXPORT void LibTelltale_MapLib(char* lib, char* path);
 _LIBTT_EXPORT void LibTelltale_ClearMappedLibs();
 _LIBTT_EXPORT unsigned char* LibTelltale_GetKey(const char* id);
+_LIBTT_EXPORT int LibTelltale_GetGameFlags(const char* id);
 
 HMODULE load_lib(const char* lib1, const char* def1);
 

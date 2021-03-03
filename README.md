@@ -61,8 +61,8 @@ Strong Bad: Cool Game for Attractive People | sbcg4ap101, sbcg4ap102, sbcg4ap103
 The Wolf Among Us | fables | N/A<br /> 
 Tales of Monkey Island | monkeyisland101, monkeyisland102, monkeyisland103, monkeyisland104, monkeyisland105 | This game is not supported, unless you have extracted the files externally and open them in the library.<br /> 
 Walking Dead: The Definitive Series | wdc | N/A<br /> 
-The Walking Dead: A New Frontier | wd3 | N/A
-The Walking Dead: The Final Season | wd4 | N/A
+The Walking Dead: A New Frontier | wd3 | N/A<br /> 
+The Walking Dead: The Final Season | wd4 | N/A<br /> 
 
 
 

@@ -28,5 +28,7 @@
 - Audiobuses (.audiobus) 
 - Light Probes (.probe)
 - Voice Data (.vox)
+- Animations (.anm)
+- Chores (.chore)
 
 tmap, pimap, enl, tga (image format, not telltale)

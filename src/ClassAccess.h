@@ -11,9 +11,11 @@
 #include "ByteStream.h"
 #include "ByteOutStream.h"
 #include "FileStream.h"
+#include "InputMapper.h"
 #include "FileOutStream.h"
 #include "TTArchive.h"
 #include "MetaStream.h"
+#include "HandleObjectInfo.h"
 #include "TTContext.h"
 
 #define E _LIBTT_EXPORT
@@ -35,11 +37,31 @@ E _T _PREF ## _DCArray_At(DCArray<_T>* arr, int index) { return arr->operator[](
 
 DCARRAY_DECL_NOCLEAR(Vers*, VersBlocks)
 
+//IMAP
+
+DCARRAY_DECL_EDIT(InputMapper::EventMapping*, InputMapper)
+
+E InputMapper* hInputMapper_Create() { return new InputMapper(); }
+
+E DCArray<InputMapper::EventMapping*>* hInputMapper_Mappings(InputMapper* imap) { return imap->mappings; };
+
+CLASS_DEL(InputMapper*, InputMapper)
+
+E InputMapper::EventMapping* hInputMapping_CreateMapping() { return new InputMapper::EventMapping(); };
+
 //META
 
 DCARRAY_DECL_EDIT(MetaClassDescription*, MetaStreamClasses)
 
 CLASS_DEL(MetaStream*, MetaStream)
+
+E void hMemory_Free(void* ptr) { free(ptr); };
+
+E void* hMemory_Alloc(uint32 size) { return (uint8*)malloc(size); }
+
+E void hMemory_FreeArray(char* str) { delete[] str; }
+
+E char* hMemory_CreateArray(const char f[]) {  return _strdup(f); };
 
 E void hMetaStream_SetVersion(MetaStream* stream, int version);
 
@@ -69,11 +91,15 @@ E DCArray<MetaClassDescription*>* hMetaStream_GetClasses(MetaStream* stream);
 
 CLASS_DEL(TTContext*, TTContext)
 
+CLASS_DEL(TTArchiveOrTTArchive2*, TTArchiveOrTTArchive2)
+
+E TTArchiveOrTTArchive2* hTTArchiveOrTTArchive2_Create() { return new TTArchiveOrTTArchive2(); };
+
 E char* hTTContext_FindArchiveEntry(TTContext* ctx, uint64 crc);
 
-E TTContext* hTTContext_Create(void* archive);
+E TTContext* hTTContext_Create(const char file[], TTArchiveOrTTArchive2* arc);
 
-E void hTTContext_NextArchive(TTContext* ctx,void* archive, bool del);
+E void hTTContext_NextArchive(const char file[],TTContext* ctx, TTArchiveOrTTArchive2* archive, bool del);
 
 E bool hTTContext_NextStream(TTContext* p, bytestream* stream, bool del);
 
@@ -81,7 +107,11 @@ E bool hTTContext_NextWrite(TTContext* p, byteoutstream* stream, const char file
 
 E void hTTContext_OverrideMeta(TTContext* ctx, MetaStream* meta, bool del);
 
-E void hTTContext_FinishWrite(TTContext* ctx, bool del);
+E void hTTContext_FinishWrite(TTContext* ctx, bool del, bool u);
+
+E char* hTTContext_CurrentGameID(TTContext* ctx) { return ctx->GetCurrentGameID(); };
+
+E void hTTContext_NextGame(TTContext* ctx, const char gameID[]) { ctx->NextGame(gameID); };
 
 E char* hTTContext_CurrentFile(TTContext* ctx);
 
@@ -96,6 +126,10 @@ E MetaStream* hTTContext_CurrentMeta(TTContext* p);
 E bytestream* hTTContext_OpenStream(TTContext* p, const char file[]);
 
 // TTARCHIVES
+
+CLASS_DEL(ttarchive::TTArchive*, TTArchive)
+
+CLASS_DEL(ttarchive2::TTArchive2*, TTArchive2)
 
 E void hTTArchive_EntryRemove(ttarchive::TTArchive* archive, ttarchive::TTArchiveEntry* entry, bool free_entry);
 

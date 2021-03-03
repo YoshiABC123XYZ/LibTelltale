@@ -36,7 +36,7 @@ Game Of Thrones | thrones | N/A<br />
 Hector: Badge Of Carnage | hector101, hector102, hector103 | This game is not supported, unless you have extracted the files externally and open them in the library. <br /> <br /> Marvels Gaurdians Of The Galaxy | marvel | N/A<br /> 
 Batman: The Telltale Series | batman | N/A<br /> 
 Batman: The Enemy Within | batman2 | N/A<br /> 
-Wallace And Gromits Grand Adventures | wag101, wag102, wag103, wag103 | N/A<br /> 
+Wallace And Gromits Grand Adventures | wag101, wag102, wag103, wag104 | N/A<br /> 
 Telltale Texas Hold'em | texasholdem | N/A<br /> 
 Bone: Out from Boneville | boneville | N/A<br /> 
 Bone: The Great Cow Race | cowrace | N/A<br /> 

@@ -21,7 +21,7 @@ Then there is byteoutstream and fileoutstream. These are identical to byte and f
 
 The encryption keys can all be also found in the executables, by searching '985887462' with a hex editor below it you should see a 55 byte long encryption key :D. The value 985887462 is a blowfish encryption constant in the ORIG_S.
 
-The following are all the games which this library supports (which at the moment is all their released ones). The game ID is used to reference the game when getting the encryption key for the game (LibTelltale_GetKey("some game id")).
+###The following are all the games which this library supports (which at the moment is all their released ones). The game ID is used to reference the game when getting the ###encryption key for the game (LibTelltale_GetKey("some game id")).
 
 FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes <br /> 
 The support notes are only given if there is a known problem with it or a note.
@@ -31,8 +31,7 @@ The Walking Dead: A New Day | twd1 | This is NOT the game key to use for TWD the
 The Walking Dead: Michonne | michonne | N/A<br /> 
 The Walking Dead: Season Two | wd2 | This is NOT the game key to use for TWD the definitive series! <br /> 
 Game Of Thrones | thrones | N/A<br /> 
-Hector: Badge Of Carnage | hector101, hector102, hector103 | This game is not supported, unless you have extracted the files externally and open them in the library. <br /> <br /> 
-Marvels Gaurdians Of The Galaxy | marvel | N/A<br /> 
+Hector: Badge Of Carnage | hector101, hector102, hector103 | This game is not supported, unless you have extracted the files externally and open them in the library. <br /> <br /> Marvels Gaurdians Of The Galaxy | marvel | N/A<br /> 
 Batman: The Telltale Series | batman | N/A<br /> 
 Batman: The Enemy Within | batman2 | N/A<br /> 
 Wallace And Gromits Grand Adventures | wag101, wag102, wag103, wag103 | N/A<br /> 

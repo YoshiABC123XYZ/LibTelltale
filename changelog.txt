@@ -1,3 +1,5 @@
+v<major>.<current format>.<current format sub>
+
 v1.0.0 : Setup the header constants and created the streams.
 v1.1.0 : Support for .ttarch2 finished
 v1.1.1 : Added all encryption keys from ttarchext, setup the ids
@@ -34,4 +36,18 @@ v2.1.9 : Updated and fixed bugs for c# implementation
 v2.2.0 : Tested .vers and meta stream flushing : Release
 v2.2.1 : Fixed c# Dispose helper functions
 v2.2.2 : Fixed bugs for reading version 3 .ttarch2 archives (wolf among us)
+v2.2.5 : TTArchiveOrTTArchive2 struct implemented, making it easier for passing one variable which represents an archive
+v2.3.0 : TTContext patch & Rewrite
+v2.3.2 : Blowfish encryption support added for external access
+v2.3.3 : Resource descriptions support for encrypting and decrypting them
+v2.3.4 : Lua script decryption for directly loading scripts instead of from archives (which is automatic)
+v2.3.5 : Removed support for .ttarch archive version 9s (reading) due to multiple errors with the unknown value. Fix in the future maybe.
+v2.3.7 : Meta streams fix for removing 'class ' and 'struct ' prefixed for Meta Binary versions.
+v2.3.9 : HandleObjectInfo created and integrated DCArray, SArray into it
+v2.4.0 : Baseclass_ContainerInterface from Telltale, to act as a base for containers
+v2.4.5 : Input Mapper support for reading all versions from any game
+v2.5.0 : Input Mapper support finished - Added writing them and mapping editing.
+v2.5.2 : C# Implementation for all of the new functions and data types
+v2.5.3 : Game flags support for getting game flags using LibTelltale_GetGameFlags which describe specific attibutes for each game.
+v2.5.4 : Patches for release : Release
 

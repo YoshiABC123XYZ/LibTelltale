@@ -23,8 +23,10 @@ The encryption keys can all be also found in the executables, by searching '9858
 
 ### The following are all the games which this library supports (which at the moment is all their released ones). The game ID is used to reference the game when getting the encryption key for the game (LibTelltale_GetKey("some game id")).
 
+
 FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes <br /> 
 The support notes are only given if there is a known problem with it or a note.
+
 
 Sam and Max: Save The World Remastered | sammaxremaster | N/A<br /> 
 The Walking Dead: A New Day | twd1 | This is NOT the game key to use for TWD the definitive series! This game is not supported, unless you have extracted the files externally and open them in the library. <br /> 

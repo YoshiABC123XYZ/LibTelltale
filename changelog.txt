@@ -52,3 +52,7 @@ v2.5.3 : Game flags support for getting game flags using LibTelltale_GetGameFlag
 v2.5.4 : Patches for release : Release
 v2.5.5 : Patched clear entries for archives, it now frees the memory
 v2.5.6 : Added the encryption key for The Walking Dead: The Final Season
+v2.5.7 : Started on PropertySets (.prop)
+v2.5.8 : PropertySet reading (all versions) - Not bug tested
+v2.5.9 : PropertySet writing mostly done, implemented CRCs and all thats left is to create all the classes for each data type
+

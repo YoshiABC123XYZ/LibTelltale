@@ -11,3 +11,5 @@
 #### The 'errors' above are WARNINGS which can be ignored and may or may not work.
 
 - You cannot write or open version 9 archives (games such as jurassic park, law and order, puzzle agent 2, poker night 2, walking dead: a new day OG) due to a problem with a new unknown value which I cant figure out. Hopefully in the future ill add support for these versions. If you extract with ttarchext for example, then you can directly load the files from it in the library. The archives aren't supported, the files are.
+
+- You cannot read or write formats such as .prop and .scene in games before The Wolf Among us. Due to the huge format differences. You could still try and open some it would work but its not guaranteed. 

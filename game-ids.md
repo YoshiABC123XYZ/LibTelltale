@@ -1,4 +1,4 @@
-FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes
+FORMAT: Game Name | Game IDs (For each episode if there are more than one) | Support Notes<br/><br/><br/><br/>
 
 The support notes are only given if there is a known problem with it or a note.
 

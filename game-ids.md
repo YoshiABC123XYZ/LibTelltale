@@ -8,7 +8,6 @@ The Walking Dead: Michonne | michonne | N/A<br/>
 The Walking Dead: Season Two | wd2 | This is NOT the game key to use for TWD the definitive series!<br/>
 Game Of Thrones | thrones | N/A<br/>
 Hector: Badge Of Carnage | hector101, hector102, hector103 | This game is not supported, unless you have extracted the files externally and open them in the library.
-
 Marvels Gaurdians Of The Galaxy | marvel | N/A<br/>
 Batman: The Telltale Series | batman | N/A<br/>
 Batman: The Enemy Within | batman2 | N/A<br/>

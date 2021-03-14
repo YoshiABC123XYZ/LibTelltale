@@ -59,4 +59,5 @@ v2.6.0 : Added all the Handle<T> object types into both the c++ and c# library
 v2.6.5 : Added over 50 more propertyset types
 v2.6.6 : Added 20+ enum types, which are all int values and require you to figure the enum types to ints
 v2.6.7 : Telltale's ScriptEnumManager types, with format 'scriptenum:x' where x makes it for example 'scriptenum:
-
+v2.x.x : Added so many property set entry types as well as support for maps, lists and other complicated ones too
+v3.0.0 : Refactored lots of code, fixed bugs, restructured the C# API. Major version increment. : Release

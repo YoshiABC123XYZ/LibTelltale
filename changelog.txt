@@ -61,3 +61,14 @@ v2.6.6 : Added 20+ enum types, which are all int values and require you to figur
 v2.6.7 : Telltale's ScriptEnumManager types, with format 'scriptenum:x' where x makes it for example 'scriptenum:
 v2.x.x : Added so many property set entry types as well as support for maps, lists and other complicated ones too
 v3.0.0 : Refactored lots of code, fixed bugs, restructured the C# API. Major version increment. : Release
+v3.0.3 : Scene structure
+v3.0.5 : Scene agent info and implementation
+v3.0.8 : C# API + minor bug fixes
+v3.1.0 : Scene memory leak fixes, bug fixes : Release
+v3.1.1 : Hash Database structure
+v3.1.2 : Hash Databases C# API
+v3.1.3 : Added all lua script property keys to the HashDB
+v3.1.4 : Chore structue
+v3.1.5 : Chore Agents and Resources
+v3.1.6 : Chore agent attachments and resource block
+v3.1.7 : Chore agent enabled rules

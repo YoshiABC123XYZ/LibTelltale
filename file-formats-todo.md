@@ -1,19 +1,19 @@
 ### This is a list of all the formats which will be supported (unless noted)
 
-- Input Mappers (.imap)
-- Agent Mappers (.amap)
-- Actor Agent Mappers (.aam)
+- Input Mappers (.imap) - DONE
+- Agent Mappers (.amap) - DONE
+- Actor Agent Mappers (.aam) - DONE
 - Telltale Meshes (.d3dmesh)
 - Telltale Textures (.d3dtx)
-- Telltale Archives (.ttarch, .ttarch2)
-- Serialized Version Information (Meta) (.vers)
+- Telltale Archives (.ttarch, .ttarch2) - DONE
+- Serialized Version Information (Meta) (.vers) - DONE
 - Dialogs (.dlog, .dlg)
 - Language Databases (.landb, .langdb)
 - Dialog System Settings (.dss)
-- Scenes (.scene)
-- Properties (.prop)
+- Scenes (.scene) - DONE
+- Properties (.prop) - DONE
 - Preload Packages (Runtime Dialog .preloadpackagertd, Runtime Scene .preloadpackagerts, .preloadpackage)
-- Lua Scripts (.lua, .lenc) - Opening from an archive automatically formats (same when saving)
+- Lua Scripts (.lua, .lenc) - Opening from an archive automatically formats (same when saving) - DONE
 - Phoneme Tables (.ptable)
 - Skeletons (.skl)
 - Sprites (.sprite)
@@ -29,6 +29,6 @@
 - Light Probes (.probe)
 - Voice Data (.vox)
 - Animations (.anm)
-- Chores (.chore)
+- Chores (.chore) - CURRENT
 
 tmap, pimap, enl, tga (image format, not telltale)

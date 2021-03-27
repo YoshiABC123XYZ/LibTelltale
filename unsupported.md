@@ -15,3 +15,5 @@
 - You cannot read or write formats such as .prop and .scene in games before The Wolf Among us. Due to the huge format differences. You could still try and open some it would work but its not guaranteed. 
 
 - Opening a .amap from Sam and Max Remastered won't work (although the only amap is empty sooo :D)
+
+- Chore files before Minecraft: Story Mode are not supported (format different, in the future I may add support for these files)

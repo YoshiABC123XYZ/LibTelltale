@@ -17,7 +17,7 @@
 - Phoneme Tables (.ptable)
 - Skeletons (.skl)
 - Sprites (.sprite)
-- Walk Boxes (.wbox)
+- Walk Boxes (.wbox) - CURRENT
 - Event Storage / Event pages (.estore, .epage)
 - Save bundles (.bundle)
 - Sound Banks (.bank - FMOD but the library will support it)
@@ -29,6 +29,7 @@
 - Light Probes (.probe)
 - Voice Data (.vox)
 - Animations (.anm)
-- Chores (.chore) - CURRENT
+- Chores (.chore) - DONE
+- Enlighten Data (.enl) - may or may not be depends!
 
-tmap, pimap, enl, tga (image format, not telltale)
+tmap, pimap, tga (image format, not telltale)

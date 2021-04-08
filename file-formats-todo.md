@@ -4,7 +4,7 @@
 - Agent Mappers (.amap) - DONE
 - Actor Agent Mappers (.aam) - DONE
 - Telltale Meshes (.d3dmesh)
-- Telltale Textures (.d3dtx)
+- Telltale Textures (.d3dtx) - CURRENT
 - Telltale Archives (.ttarch, .ttarch2) - DONE
 - Serialized Version Information (Meta) (.vers) - DONE
 - Dialogs (.dlog, .dlg)
@@ -17,7 +17,7 @@
 - Phoneme Tables (.ptable)
 - Skeletons (.skl)
 - Sprites (.sprite)
-- Walk Boxes (.wbox) - CURRENT
+- Walk Boxes (.wbox) - DONE
 - Event Storage / Event pages (.estore, .epage)
 - Save bundles (.bundle)
 - Sound Banks (.bank - FMOD but the library will support it)

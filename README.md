@@ -23,4 +23,4 @@ The source code is no longer here, its in the releases. Download it with a relea
 
 The encryption keys can all be also found in the executables, by searching '985887462' with a hex editor below it you should see a 55 byte long encryption key :D. The value 985887462 is a blowfish encryption constant in the ORIG_S.<br/><br/>
 
-Recent work on the formats has meant that support for any old games in MTRE or MBIN meta versions (ie, games using .ttarch not .ttarch2 before the wolf among us) has been removed. This means you can't have access to a lot of those games' files. However, formats such as D3DTX and D3DMESH will be supported since they do not have the big changes which files such as .prop and .scene have in newer games.
+Recent work on the formats has meant that support for any old games in MTRE or MBIN meta versions (ie, games using .ttarch not .ttarch2 before the wolf among us) has been removed. This means you can't have access to a lot of those games' files.
